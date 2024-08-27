@@ -1,8 +1,8 @@
 pipeline {
     // add your slave label name
-    agent { label 'slave'}
+    agent { label 'worker'}
     tools{
-        maven 'maven-tool-config'
+        maven 'maven_tool_config'
     }
     stages {
         stage ('cloning') {
@@ -24,7 +24,7 @@ pipeline {
 
             steps {
 	      sshagent(['tomee']) {
-              sh "scp -o StrictHostKeyChecking=no  target/maven-web-application.war  ec2-user@172.31.32.114:/opt/tomcat9/webapps"
+              sh "scp -o StrictHostKeyChecking=no  target/maven-web-application.war  ec2-user@43.205.115.22:/opt/tomcat9/webapps"
 	      }
          }
         }
